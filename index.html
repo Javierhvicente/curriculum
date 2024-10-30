@@ -1,229 +1,148 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="css/index.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script language="javascript" type="text/javascript" src="js/validar.js"></script>
-    <script  language="javascript" type="text/javascript">
-        function recuperarDatos() {
-            var nombre = document.getElementById("nombre").value;
-            var email = document.getElementById("Email").value;
-            var telefono = document.getElementById("Tlfno").value;
-            var fechaCita = document.getElementById("fechaCita").value;
-            var cp = document.getElementById("Cp").value;
-            var gafas = document.getElementById("Gafas").checked;
-            var lentillas = document.getElementById("Lentillas").checked;
-            var dolencias = document.getElementById("Dolencias").value;
-            var aceptarTerminos = document.getElementById("check1").checked;
-
-            var datos = `
-                Nombre: ${nombre}<br>
-                Email: ${email}<br>
-                Teléfono: ${telefono}<br>
-                Fecha de Cita: ${fechaCita}<br>
-                Código Postal: ${cp}<br>
-                Producto: ${gafas ? "Gafas" : "Lentillas"}<br>
-                Dolencias: ${dolencias}<br>
-                Términos aceptados: ${aceptarTerminos ? "Sí" : "No"}
-            `;
-
-            return datos;
+    <title>Currículum Javier Hernández</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f3f4f6;
         }
-
-        function validarCPInside(elemento, length) {
-            if (!validarInt(elemento.value, length)) { 
-                elemento.style.backgroundColor = "lightyellow";
-                elemento.style.borderColor = "red";
-                mostrar(elemento);
-            } else if(!validarCodigoPostal(elemento.value)){
-                elemento.style.backgroundColor = "lightyellow";
-                elemento.style.borderColor = "red";
-                mostrar(elemento);
-            }else {
-                elemento.style.backgroundColor = "";
-                elemento.style.borderColor = "";
-                noMostrar(elemento);
-            }
-        }  
-        
-        document.addEventListener("DOMContentLoaded", function() {
-            var myModal = document.getElementById('myModal');
-            myModal.addEventListener('hidden.bs.modal', function () {
-                document.querySelector('.modal-backdrop').remove();
-                document.body.classList.remove('modal-open');
-                document.body.style = '';
-            });
-        });
-
-
-        function validarForm() {
-            var mensaje = "";
-            var valido = true;
-
-            var nombre = document.getElementById("nombre").value;
-            var email = document.getElementById("Email").value;
-            var telefono = document.getElementById("Tlfno").value;
-            var fechaCita = document.getElementById("fechaCita").value;
-            var cp = document.getElementById("Cp").value;
-            var gafas = document.getElementById("Gafas").checked;
-            var lentillas = document.getElementById("Lentillas").checked;
-            var aceptarTerminos = document.getElementById("check1").checked;
-
-            if (nombre.length < 2 || nombre.length > 60) {
-                mensaje += "El nombre debe tener entre 2 y 60 caracteres.<br>";
-                valido = false;
-            }
-
-            if (!email.includes("@")) {
-                mensaje += "El email no es válido.<br>";
-                valido = false;
-            }
-
-            if (!telefono.match(/^[0-9]{9}$/)) {
-                mensaje += "El teléfono debe tener 9 dígitos.<br>";
-                valido = false;
-            }
-
-            if (fechaCita === "") {
-                mensaje += "Debes elegir una fecha para la cita.<br>";
-                valido = false;
-            }
-
-            if (cp < 1000 || cp > 52999) {
-                mensaje += "El código postal debe estar entre 1000 y 52999.<br>";
-                valido = false;
-            }
-
-            if (!gafas && !lentillas) {
-                mensaje += "Debes seleccionar entre Gafas o Lentillas.<br>";
-                valido = false;
-            }
-
-            if (!aceptarTerminos) {
-                mensaje += "Debes aceptar los términos y condiciones.<br>";
-                valido = false;
-            }
-
-            return { valido: valido, mensaje: mensaje };
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
         }
-        
-        function manejarEnvio() {
-            var resultadoValidacion = validarForm();
-            var modalBody = document.querySelector('.modal-body');
-
-            if (resultadoValidacion.valido) {
-                modalBody.innerHTML = `<div class="alert alert-success">${recuperarDatos()}</div>`;
-            } else {
-                modalBody.innerHTML = `<div class="alert alert-danger">${resultadoValidacion.mensaje}</div>`;
-            }
-
-            var myModal = new bootstrap.Modal(document.getElementById('myModal'));
-            myModal.show();
+        .profile-image {
+            width: 100%;
+            border-radius: 50%;
         }
-        
-    </script>
+        .header {
+            background-color: #1f3c88;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px 8px 0 0;
+        }
+        .section-title {
+            background-color: #1f3c88;
+            color: white;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        .contact-info, .additional-info, .skills, .languages {
+            background-color: #e8f0fe;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        .icon {
+            margin-right: 8px;
+        }
+        #profile-image{
+            width: 10em;
+            height: auto;
+        }
+    </style>
 </head>
 <body>
-    <div id="body" class="container pt-5">
-        <div id="header" class="mt-4 p-5 big-primary text-black rounded align-center">
-            <header>
-                <h1 id="titulo">Optica Boops</h1>
-                <br>
-                <h3>Información</h3>
-            </header>
-        </div>  
-        <div>
-            <form id="formulario">
-                <div>
-                    <label class="form-label">Nombre</label><br/>
-                    <input class="form-control is-invalid" id="nombre" name="nombre" placeholder="Nombre" onblur="validarStringInside(this,2,60)">
-                    <div class="invalid-feedback" id="errorNombre">Es obligatorio rellenar este campo y debe tener entre 2 y 60 caracteres</div>
-                </div>
-                <br>
-                <div>
-                    <label class="form-label">Email</label><br>
-                    <input class="form-control is-invalid" id="Email" name="Email" placeholder="Email" onblur="revisarEmail(this)">
-                    <div class="invalid-feedback" id="errorEmail">Es obligatorio rellenar este campo y debe tener entre 2 y 80 caracteres</div>
-                </div>
-                <br>
-                <div>
-                    <label class="form-label">Tlfno</label><br/>
-                    <input class="form-control is-invalid" id="Tlfno" name="Tlfno" placeholder="Tlfno" onblur="validateNumTelefono(this,errorTlfno)">
-                    <div class="invalid-feedback" id="errorTlfno">Es obligatorio rellenar este campo</div>
-                </div>
-                <br>
-                <div class="row mt-4">
-                    <div class="col">
-                        <label class="linea form-label">CP</label>
-                        <input class="caja form-control is-invalid" id="Cp" type="text" name="Cp" placeholder="Cod Postal" onblur="validarCPInside(this,4,errorCP);ConseguirProvincia(this)">
-                        <div class="invalid-feedback" id="errorCP">El código postal es obligatorio y debe ser un número entre 1000 y 52999</div>
-                    </div>
-                    <div class="col">
-                        <label class="linea form-label">Provincia</label>
-                        <input class="caja form-control"  id="Provincia" name="Provincia" type="text" readonly>
-                    </div>
-                </div>
-                <br>
-                <div class="form-check" id="Optica" onmouseover="entraFoco(this)" onmouseout="saleFoco(this)">
-                    <input class="Optica form-check-input is-invalid" id="Gafas" type="radio" name="Optica" value="Gafas" onchange="validarRadio(this)">
-                    <label class="Optica form-check-label">Gafas</label>
-                </div>
-                <div class="form-check" id="Optica" onmouseover="entraFoco(this)" onmouseout="saleFoco(this)">
-                    <input class="Optica form-check-input is-invalid" id="Lentillas" type="radio" name="Optica" value="Lentillas" onchange="validarRadio(this)">
-                    <label class="Optica form-check-label">Lentillas</label>
-                </div>
-                <div class="invalid-feedback">Elige una de las 2 opciones</div>
-                <br>
-                <div>
-                    <label class="form-label">Dolencias</label>
-                    <select id="Dolencias" class="form-select is-invalid" multiple>
-                        <option>Miopía</option>
-                        <option>Astigmatismo</option>
-                        <option>Ojos cansados</option>
-                        <option>Hipermetropía</option>
-                        <option>Hinchazón</option>
-                        <option>Sensibilidad alta</option>
-                    </select>
-                    <div class="invalid-feedback" id="errorDolencias">Debes seleccionar al menos una dolencia</div>
-                </div>
-                <br>
-                <label class="form-label">Fecha deseada</label>
-                <input class="form-control" id="fechaCita" type="date" name="fechaCita" placeholder="Fecha Cita" onfocus="entraFoco(this)" onblur="saleFoco(this)">
-                <p class="obligatorio" id="errorFechCita">Es obligatorio rellenar este campo</p>
-                <br>
-                <div class="form-floating">
-                    <textarea class="form-control" id="Comentarios" placeholder="Comenta aquí!"></textarea>
-                    <label for="Comentarios">Comentarios</label>
-                </div>
-                <br>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="check1" name="option1"  >
-                    <label class="form-check-label">AceptarTerminos</label>
-                  </div>
-                <br>
-                <button id="reset" class="btn btn-danger" type="reset" name="reset" value="reset">Borrar</button>
-                <button type="button" class="btn btn-success" onclick="manejarEnvio()" data-bs-toggle="modal" data-bs-target="#myModal">Enviar</button>
-                <!-- Coloca el modal fuera del formulario -->
-                <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Resultado de la Validación</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body"></div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
+
+<div class="container">
+    <div class="header align-items-center">
+        <img id="profile-image" src="images/avatar.png" alt="Foto de perfil" class="profile-image mb-3">
+        <h1>Javier Hernández</h1>
+        <p>DESARROLLADOR DE APLICACIONES WEB</p>
+        <a href="https://github.com/Javierhvicente" target="_blank">
+            <img src="images/icons8-github-48.png" class="small-image">
+        </a>
+        <a href="https://www.linkedin.com/in/javier-hernandez-vicente-885b45335/" target="_blank">
+            <img src="images/icons8-linkedin-48.png" class="small-image">
+
+        </a>
+    </div>
+
+    <!-- Contact Information -->
+    <div class="row mt-4">
+        <div class="col-lg-4 contact-info">
+            <h2>Tecnologías</h2>
+            <img src="images/icons8-kotlin-48.png" class="small-image">
+            <img src="images/icons8-logotipo-de-java-coffee-cup-48.png" class="small-image">
+            <img src="images/icons8-git-48.png" class="small-image">
+            <img src="images/icons8-estibador-48.png" class="small-image">
+            <img src="images/icons8-cartero-api-64.png" class="small-image">
+            <img src="images/icons8-html-48.png" class="small-image">
+            <img src="images/icons8-css-48.png" class="small-image">
+            <img src="images/icons8-js-48.png" class="small-image">
+            <img src="images/icons8-mysql-48.png" class="small-image">
+            <img src="images/icons8-logotipo-de-primavera-48.png" class="small-image">
+            <img src="images/icons8-oreja-48.png" class="small-image">
         </div>
-    </div>    
+        <div class="col-lg-8">
+            <!-- About Section -->
+            <div class="section-title">
+                <h4>Sobre mí</h4>
+            </div>
+            <p>
+                Soy estudiante de desarrollo de aplicaciones web el cual destaca por el desarrollo back-end. Soy un desarrollador el cual se asegura de que cada proyecto ofrezca una experiencia clara y centrada en el usuario. Me gusta pensar que la calidad de mi trabajo se refleja tanto en cómo funciona como en cómo se siente usarlo.
+            </p>
+        </div>
+    </div>
+
+    <!-- Academic Data Section -->
+    <div class="section-title">
+        <h4>Datos Académicos</h4>
+    </div>
+    <ul>
+        <li><strong>IES LUIS VIVES:</strong> Técnico Superior en Desarrollo de aplicaciones web | Septiembre 2023 - Actual</li>
+        <li><strong>IES CERVANTES:</strong> Bachillerato de Ciencias de la Salud | Septiembre 2021 - Junio 2023</li>
+    </ul>
+
+    <!-- Additional Training Section -->
+    <div class="section-title">
+        <h4>Formación Complementaria</h4>
+    </div>
+    <ul>
+        <li><strong>OpenWebinars</strong></li>
+        <ul>
+            <li>Curso de Docker para desarrolladores | Octubre 2024</li>
+            <li>Curso de Git | Octubre 2024</li>
+            <li>Curso de Postman | Octubre 2024</li>
+        </ul>
+    </ul>
+
+    <!-- Additional Info Section -->
+    <div class="row">
+        <div class="col-lg-4 additional-info">
+            <h5>Idiomas</h5>
+            <p><strong>Castellano:</strong> Nativo</p>
+            <p><strong>Inglés:</strong>Nivel C1</p>
+            <p>Título oficial B2 Cambridge</p>
+        </div>
+        <div class="col-lg-8">
+            <div class="section-title">
+                <h4>Soft skills</h4>
+            </div>
+            <p>Me considero una persona que sabe trabajar de forma adecuada<br>
+                en equipo, ya sea dirigiendolo o inegrandome en un nuevo equipo.<br>
+                Soy una persona que sabe escuchar a los demás y siempre estoy dispuesto
+                a recibir nuevas propuestas de cambio en mi trabajo o forma de trabajar.<br>
+                Además diría que soy un trabajador resolutivo y autosuficiente ya que siempre
+                intento sacar el trabajo para la fecha por mis propios méritos, aunque no tengo problema
+                en pedir ayuda a gente más experimentada si se me complica algo.<br>
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- FontAwesome Icons & Bootstrap JS -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
